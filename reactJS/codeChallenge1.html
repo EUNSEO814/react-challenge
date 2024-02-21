@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      const [index, setIndex] = React.useState("xx");
+      const [result, setResult] = React.useState(0);
+      const [firNum, setFirNum] = React.useState("");
+      const [secNum, setSecNum] = React.useState("");
+      const [display, setDisplay] = React.useState(false);
+
+      const onChangeFirNum = (e) => {
+        setFirNum(e.target.value);
+      };
+
+      const onChangeSecNum = (e) => {
+        setSecNum(e.target.value);
+      };
+      const onSelect = (e) => {
+        setIndex(e.target.value);
+      };
+
+      const onClick = () => {
+        if (index === "+") {
+          setResult(Number(firNum) + Number(secNum));
+          setDisplay(true);
+        } else if (index === "-") {
+          setResult(Number(firNum) - Number(secNum));
+          setDisplay(true);
+        } else if (index === "*") {
+          setResult(Number(firNum) * Number(secNum));
+          setDisplay(true);
+        } else if (index === "/") {
+          setResult(Number(firNum) / Number(secNum));
+          setDisplay(true);
+        }
+      };
+      const reset = () => {
+        setFirNum("");
+        setSecNum("");
+        setIndex("xx");
+        setDisplay(false);
+      };
+      return (
+        <div className="container">
+          <h1>🔥 Calculator 🔥</h1>
+          <input
+            value={firNum}
+            onChange={onChangeFirNum}
+            type="number"
+            placeholder="Write a number..."
+          />
+          <input
+            value={secNum}
+            onChange={onChangeSecNum}
+            type="number"
+            placeholder="And another one..."
+          />
+          <select value={index} onChange={onSelect}>
+            <option value="xx">Select operation</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+          </select>
+          <button onClick={onClick}>Calculate</button>
+          <button onClick={reset}>Reset</button>
+          {display ? <h1>The result is : {result}</h1> : null}
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
