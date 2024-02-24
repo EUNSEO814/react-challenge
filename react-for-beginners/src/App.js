@@ -1,12 +1,12 @@
-// import UseEffect from "./UseEffect";
-import Cleanup from "./Cleanup";
+import { Route, Routes } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 function App() {
   return (
-    <div>
-      <h1>Welcome back!</h1>
-      {/* <UseEffect /> */}
-      <Cleanup />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/detail/:id" element={<Detail />} />
+    </Routes>
   );
 }
 
