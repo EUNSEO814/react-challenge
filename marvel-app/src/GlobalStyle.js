@@ -1,0 +1,20 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
+  * {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
+    background-color: #000;
+      text-decoration: none;
+  }
+
+  ol, ul, li {
+    list-style: none;
+  }
+a{
+    color: white;
+    text-decoration: none;
+}
+`;
