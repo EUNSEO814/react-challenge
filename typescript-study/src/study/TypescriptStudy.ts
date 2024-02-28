@@ -70,3 +70,4 @@
 // player.hello()
 // Error
 // Property 'h' does not exist on type '{ name: string; }'.
+// ---
