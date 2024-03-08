@@ -1,5 +1,5 @@
 // import axios from "axios";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -66,7 +66,9 @@ interface ICoin {
 // const endpoint = "https://proxy.cors.sh/https://api.coinpaprika.com/v1/coins";
 
 const Coins = () => {
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins, {
+    select: (data) => data.slice(0, 10),
+  });
   // const [coins, setCoins] = useState<ICoin[]>([]);
   // const [loading, setLoading] = useState(true);
 
