@@ -36,8 +36,10 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
 }
-menu, ol, ul {
+menu, ol, ul, li {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 blockquote, q {
   quotes: none;
@@ -65,6 +67,12 @@ a {
   text-decoration:none;
   color:inherit;
 }
+button{
+  border: 0;
+  outline:0;
+  background-color: inherit;
+}
+
 `;
 
 export default GlobalStyles;

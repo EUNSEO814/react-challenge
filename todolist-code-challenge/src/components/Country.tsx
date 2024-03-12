@@ -1,5 +1,18 @@
 import { useSetRecoilState } from "recoil";
 import { Categories, ICountry, countryState } from "../atoms";
+import styled from "styled-components";
+
+const List = styled.li`
+  background-color: ${(props) => props.theme.cardBgColor};
+  margin: 6px;
+  padding: 6px;
+  border-radius: 4px;
+  position: relative;
+`;
+const BtnArea = styled.span`
+  position: absolute;
+  right: 0;
+`;
 
 const Country = ({ text, category, id }: ICountry) => {
   const setCountries = useSetRecoilState(countryState);
@@ -32,34 +45,38 @@ const Country = ({ text, category, id }: ICountry) => {
     });
   };
   return (
-    <li>
+    <List>
       <span>{text}</span>
-      {category === Categories.WANT && (
-        <>
-          <button name={Categories.VISITED} onClick={onClick}>
-            ✅
-          </button>
-          <button onClick={handleDelete}>🗑️</button>
-        </>
-      )}
+      <BtnArea>
+        {category === Categories.WANT && (
+          <>
+            <button name={Categories.VISITED} onClick={onClick}>
+              ✅
+            </button>
+            <button onClick={handleDelete}>🗑️</button>
+          </>
+        )}
+      </BtnArea>
+
       {category === Categories.VISITED && (
-        <>
+        <BtnArea>
           <button name={Categories.FAV} onClick={onClick}>
             👍
           </button>
           <button name={Categories.WANT} onClick={onClick}>
             ❌
           </button>
-        </>
+        </BtnArea>
       )}
+
       {category === Categories.FAV && (
-        <>
+        <BtnArea>
           <button name={Categories.VISITED} onClick={onClick}>
             👎
           </button>
-        </>
+        </BtnArea>
       )}
-    </li>
+    </List>
   );
 };
 
