@@ -1,14 +1,15 @@
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export enum Categories {
-  "TO_DO" = "TO_DO",
-  "DOING" = "DOING",
-  "DONE" = "DONE",
+  "WANT" = "WANT",
+  "VISITED" = "VISITED",
+  "FAV" = "FAV",
 }
 
-// type categories = "TO_DO" | "DOING" | "DONE";
-
-export interface IToDo {
+export interface ICountry {
   text: string;
   id: number;
   category: Categories;
@@ -16,32 +17,24 @@ export interface IToDo {
 
 export const categoryState = atom<Categories>({
   key: "category",
-  default: Categories.TO_DO,
+  default: Categories.WANT,
+  effects_UNSTABLE: [persistAtom],
 });
 
-export const toDoState = atom<IToDo[]>({
-  key: "toDo",
+export const countryState = atom<ICountry[]>({
+  key: "country",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
-// export const toDoSelector = selector({
-//   key: "toDoSelector",
-//   get: ({ get }) => {
-//     const toDos = get(toDoState);
-
-//     return [
-//       toDos.filter((toDo) => toDo.category === "TO_DO"),
-//       toDos.filter((toDo) => toDo.category === "DOING"),
-//       toDos.filter((toDo) => toDo.category === "DONE"),
-//     ];
-//   },
-// });
-
-export const toDoSelector = selector({
-  key: "toDoSelector",
+export const countrySelector = selector({
+  key: "countrySelector",
   get: ({ get }) => {
-    const toDos = get(toDoState);
-    const category = get(categoryState);
-    return toDos.filter((toDo) => toDo.category === category);
+    const countries = get(countryState);
+    return [
+      countries.filter((country) => country.category === Categories.WANT),
+      countries.filter((country) => country.category === Categories.VISITED),
+      countries.filter((country) => country.category === Categories.FAV),
+    ];
   },
 });
