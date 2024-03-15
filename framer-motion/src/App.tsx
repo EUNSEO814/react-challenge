@@ -1,11 +1,11 @@
 import GlobalStyle from "./GlobalStyle";
-import AnimatePresenceStudy from "./learnFramerMotion/AnimatePresenceStudy";
+import Modal2 from "./learnFramerMotion/Modal2";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <AnimatePresenceStudy />
+      <Modal2 />
     </>
   );
 }
