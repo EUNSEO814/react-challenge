@@ -1,11 +1,11 @@
 import GlobalStyle from "./GlobalStyle";
-import Modal2 from "./learnFramerMotion/Modal2";
+import Timer from "./components/Timer";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Modal2 />
+      <Timer />
     </>
   );
 }
